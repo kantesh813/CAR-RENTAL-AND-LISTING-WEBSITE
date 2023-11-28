@@ -1,0 +1,8 @@
+1. Listen Request is missing :
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
+
+2.it starts the Server and listen the coming HTTP request on specific port.
+
+3.No

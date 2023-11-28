@@ -1,0 +1,64 @@
+CREATE TABLE Car (
+  Reg_no VARCHAR(20) NOT NULL,
+  C_name VARCHAR(50) NOT NULL,
+  Model INTEGER NOT NULL,
+  Available CHAR(1) NOT NULL,
+  Descripton VARCHAR(4000) NOT NULL,
+  Price_Per_Day INTEGER NOT NULL,
+  Transmission VARCHAR(20) NOT NULL,
+  Mileage INTEGER NOT NULL,
+  Int_img VARCHAR(4000) NOT NULL,
+  Ext_img VARCHAR(4000) NOT NULL,
+  Reg_Year VARCHAR(4) NOT NULL,
+  Color VARCHAR(50) NOT NULL,
+  Owner_O_id VARCHAR(20) NOT NULL,
+  PRIMARY KEY (Reg_no)
+);
+
+CREATE TABLE Car_Registration (
+  CR_id VARCHAR(20) NOT NULL,
+  Car_Reg_no VARCHAR(20) NOT NULL,
+  PRIMARY KEY (CR_id)
+);
+
+CREATE TABLE Customer (
+  Cus_id VARCHAR(20) NOT NULL,
+  Name VARCHAR(50) NOT NULL,
+  Address VARCHAR(4000) NOT NULL,
+  Number VARCHAR(13) NOT NULL,
+  Age INT NOT NULL,
+  Zip_code INTEGER NOT NULL,
+  Gender VARCHAR(1) NOT NULL,
+  PRIMARY KEY (Cus_id)
+);
+
+CREATE TABLE Owner (
+  O_id VARCHAR(20) NOT NULL,
+  Name VARCHAR(50) NOT NULL,
+  Address VARCHAR(4000) NOT NULL,
+  Number VARCHAR(13) NOT NULL,
+  Gender VARCHAR(1) NOT NULL,
+  PRIMARY KEY (O_id)
+);
+
+CREATE TABLE Rental_Reg (
+  Reg_id VARCHAR(20) NOT NULL,
+  Days INTEGER NOT NULL,
+  Commision INTEGER NOT NULL,
+  Total_Price INTEGER NOT NULL,
+  Pick_up_TD TIMESTAMP NOT NULL,
+  Drop_off_TD TIMESTAMP NOT NULL,
+  Customer_Cus_id VARCHAR(20) NOT NULL,
+  Car_Reg_no VARCHAR(20) NOT NULL,
+  Transactions_T_id VARCHAR(20) NOT NULL,
+  PRIMARY KEY (Reg_id),
+  FOREIGN KEY (Customer_Cus_id) REFERENCES Customer (Cus_id),
+  FOREIGN KEY (Car_Reg_no) REFERENCES Car (Reg_no)
+);
+
+CREATE TABLE Transactions (
+  T_id VARCHAR(20) NOT NULL,
+  Rental_Reg_Reg_id VARCHAR(20) NOT NULL,
+  PRIMARY KEY (T_id),
+  FOREIGN KEY (Rental_Reg_Reg_id) REFERENCES Rental_Reg (Reg_id)
+);
